@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>目标检测 - YOLOv8 检测系统</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script>
+        // 如果 bootcdn 加载失败，备用 unpkg
+        if (typeof echarts === 'undefined') {
+            document.write('<script src="https://unpkg.com/echarts@5.4.3/dist/echarts.min.js"><\/script>');
+        }
+    </script>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <nav class="navbar">
+        <div class="nav-brand">🎯 YOLOv8 目标检测系统</div>
+        <div class="nav-menu">
+            <a href="/detect" class="nav-link active">智能检测</a>
+            <a href="/history" class="nav-link">历史记录</a>
+            <span class="nav-user">👤 <span id="navUsername">{{ username }}</span></span>
+            <a href="javascript:void(0)" class="nav-link logout-btn" id="logoutBtn">退出</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- 左侧：上传与控制区 -->
+        <div class="panel left-panel">
+            <h2 class="panel-title">📤 文件上传</h2>
+
+            <!-- 上传区域 -->
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📁</div>
+                <p class="upload-text">点击或拖拽文件到此处上传</p>
+                <p class="upload-hint">支持图片（jpg/png等）和视频（mp4等）</p>
+                <input type="file" id="fileInput" accept="image/*,video/*" hidden>
+            </div>
+
+            <!-- 文件信息 -->
+            <div class="file-info hidden" id="fileInfo">
+                <span class="file-icon" id="fileIcon">🖼️</span>
+                <span class="file-name" id="fileName"></span>
+                <span class="file-size" id="fileSize"></span>
+                <button class="btn-remove" id="removeFile">✕</button>
+            </div>
+
+            <!-- 置信度调节 -->
+            <div class="control-group">
+                <label>置信度阈值：<span id="confValue">0.25</span></label>
+                <input type="range" id="confSlider" min="0.05" max="0.95" step="0.05" value="0.25" class="slider">
+                <div class="slider-labels">
+                    <span>严格(高)</span>
+                    <span>宽松(低)</span>
+                </div>
+            </div>
+
+            <!-- 开始检测按钮 -->
+            <button class="btn-detect" id="detectBtn" disabled>🚀 开始检测</button>
+
+            <!-- 视频进度条 -->
+            <div class="progress-container hidden" id="progressContainer">
+                <div class="progress-label">
+                    <span>视频检测中...</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <!-- 加载提示 -->
+            <div class="loading hidden" id="loading">
+                <div class="spinner"></div>
+                <span>正在检测，请稍候...</span>
+            </div>
+        </div>
+
+        <!-- 右侧：结果展示区 -->
+        <div class="panel right-panel">
+            <h2 class="panel-title">📊 检测结果</h2>
+
+            <!-- 结果图片/视频 -->
+            <div class="result-preview" id="resultPreview">
+                <div class="placeholder">
+                    <div class="placeholder-icon">🔍</div>
+                    <p>上传文件并点击"开始检测"查看结果</p>
+                </div>
+            </div>
+
+            <!-- 下载按钮 -->
+            <div class="result-actions hidden" id="resultActions">
+                <button class="btn-download" id="downloadBtn">⬇️ 下载检测结果</button>
+            </div>
+
+            <!-- 统计信息 -->
+            <div class="stats-section hidden" id="statsSection">
+                <h3>📈 物体统计</h3>
+                <div class="stats-summary">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalObjects">0</div>
+                        <div class="stat-label">物体总数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="classCount">0</div>
+                        <div class="stat-label">类别数</div>
+                    </div>
+                </div>
+                <!-- ECharts 图表 -->
+                <div class="chart-container" id="chartContainer"></div>
+                <!-- 类别明细列表 -->
+                <div class="class-list" id="classList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 消息提示 -->
+    <div class="toast hidden" id="toast"></div>
+
+    <script src="/static/js/detection.js"></script>
+</body>
+</html>

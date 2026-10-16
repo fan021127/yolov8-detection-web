@@ -1,0 +1,471 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #f0f2f5;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* ========== 导航栏 ========== */
+.navbar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 0 30px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-brand {
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    font-weight: 600;
+}
+
+.nav-user {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 13px;
+    margin: 0 10px;
+}
+
+.logout-btn {
+    cursor: pointer;
+}
+
+/* ========== 主容器 ========== */
+.main-container {
+    display: flex;
+    gap: 20px;
+    padding: 24px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.panel {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.left-panel {
+    width: 380px;
+    flex-shrink: 0;
+}
+
+.right-panel {
+    flex: 1;
+    min-width: 0;
+}
+
+.panel-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f0f2f5;
+}
+
+/* ========== 上传区域 ========== */
+.upload-area {
+    border: 2px dashed #d0d5dd;
+    border-radius: 10px;
+    padding: 36px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    margin-bottom: 16px;
+}
+
+.upload-area:hover,
+.upload-area.dragover {
+    border-color: #667eea;
+    background: #f5f7ff;
+}
+
+.upload-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.upload-text {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.upload-hint {
+    font-size: 12px;
+    color: #999;
+}
+
+/* ========== 文件信息 ========== */
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f5f7ff;
+    border: 1px solid #e0e7ff;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 16px;
+}
+
+.file-icon {
+    font-size: 20px;
+}
+
+.file-name {
+    flex: 1;
+    font-size: 13px;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file-size {
+    font-size: 12px;
+    color: #888;
+}
+
+.btn-remove {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.btn-remove:hover {
+    background: #ffebee;
+    color: #c62828;
+}
+
+/* ========== 控制组 ========== */
+.control-group {
+    margin-bottom: 20px;
+}
+
+.control-group label {
+    display: block;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.control-group label span {
+    color: #667eea;
+    font-weight: 700;
+}
+
+.slider {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #e0e7ff;
+    border-radius: 3px;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #667eea;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
+}
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 4px;
+}
+
+/* ========== 按钮 ========== */
+.btn-detect {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.2s;
+}
+
+.btn-detect:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-detect:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-download {
+    padding: 10px 24px;
+    background: #fff;
+    color: #667eea;
+    border: 1.5px solid #667eea;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-download:hover {
+    background: #f5f7ff;
+}
+
+/* ========== 进度条 ========== */
+.progress-container {
+    margin-top: 18px;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e7ff;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.3s;
+}
+
+/* ========== 加载 ========== */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+    padding: 12px;
+    color: #667eea;
+    font-size: 14px;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #e0e7ff;
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ========== 结果预览 ========== */
+.result-preview {
+    width: 100%;
+    min-height: 320px;
+    background: #fafbfc;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.result-preview img,
+.result-preview video {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.placeholder {
+    text-align: center;
+    color: #bbb;
+}
+
+.placeholder-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.placeholder p {
+    font-size: 14px;
+}
+
+.result-actions {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* ========== 统计区 ========== */
+.stats-section {
+    border-top: 2px solid #f0f2f5;
+    padding-top: 20px;
+}
+
+.stats-section h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.stats-summary {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    flex: 1;
+    background: linear-gradient(135deg, #f5f7ff 0%, #eef1ff 100%);
+    border-radius: 10px;
+    padding: 18px;
+    text-align: center;
+    border: 1px solid #e0e7ff;
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: 800;
+    color: #667eea;
+    line-height: 1.2;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+}
+
+.chart-container {
+    width: 100%;
+    height: 280px;
+    margin-bottom: 16px;
+}
+
+.class-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.class-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f5f7ff;
+    border: 1px solid #e0e7ff;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+}
+
+.class-tag .tag-name {
+    color: #333;
+    font-weight: 500;
+}
+
+.class-tag .tag-count {
+    background: #667eea;
+    color: #fff;
+    border-radius: 10px;
+    padding: 1px 8px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* ========== Toast ========== */
+.toast {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.3s ease;
+}
+
+.toast.success { background: #2e7d32; }
+.toast.error { background: #c62828; }
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.hidden {
+    display: none !important;
+}

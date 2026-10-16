@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>YOLOv8 目标检测</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; overflow: hidden; }
+        #webview {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        #loading {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            z-index: 9999;
+        }
+        #loading .icon { font-size: 60px; margin-bottom: 16px; }
+        #loading .text { font-size: 18px; font-weight: 600; }
+        #loading .hint { font-size: 13px; margin-top: 8px; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <!-- 加载中提示页 -->
+    <div id="loading">
+        <div class="icon">🎯</div>
+        <div class="text">YOLOv8 目标检测系统</div>
+        <div class="hint">正在加载...</div>
+    </div>
+
+    <!-- WebView 加载你的网站地址 -->
+    <iframe id="webview" src="http://你的服务器地址:5000"></iframe>
+
+    <script>
+        // iframe 加载完成后隐藏加载页
+        document.getElementById('webview').onload = function() {
+            document.getElementById('loading').style.display = 'none';
+        };
+        // 5秒后强制隐藏加载页（防止网络慢时一直显示）
+        setTimeout(function() {
+            document.getElementById('loading').style.display = 'none';
+        }, 5000);
+    </script>
+</body>
+</html>

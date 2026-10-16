@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>历史记录 - YOLOv8 检测系统</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/history.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <nav class="navbar">
+        <div class="nav-brand">🎯 YOLOv8 目标检测系统</div>
+        <div class="nav-menu">
+            <a href="/detect" class="nav-link">智能检测</a>
+            <a href="/history" class="nav-link active">历史记录</a>
+            <span class="nav-user">👤 <span id="navUsername">{{ username }}</span></span>
+            <a href="javascript:void(0)" class="nav-link logout-btn" id="logoutBtn">退出</a>
+        </div>
+    </nav>
+
+    <div class="history-container">
+        <div class="history-header">
+            <h2>📋 检测历史记录</h2>
+            <div class="header-actions">
+                <button class="btn-export" id="exportBtn">📊 导出 Excel 报告</button>
+            </div>
+        </div>
+
+        <!-- 记录表格 -->
+        <div class="table-container">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>文件名</th>
+                        <th>类型</th>
+                        <th>物体数</th>
+                        <th>置信度</th>
+                        <th>备注</th>
+                        <th>状态</th>
+                        <th>检测时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="recordTableBody">
+                    <tr><td colspan="9" class="loading-cell">加载中...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 分页 -->
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+    <!-- 备注编辑弹窗 -->
+    <div class="modal hidden" id="remarkModal">
+        <div class="modal-content">
+            <h3>✏️ 编辑备注</h3>
+            <textarea id="remarkText" rows="4" placeholder="请输入备注内容（最多500字）"></textarea>
+            <div class="modal-actions">
+                <button class="btn-cancel" id="cancelRemark">取消</button>
+                <button class="btn-confirm" id="saveRemark">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 详情弹窗 -->
+    <div class="modal hidden" id="detailModal">
+        <div class="modal-content modal-large">
+            <h3>🔍 检测详情</h3>
+            <div id="detailContent"></div>
+            <div class="modal-actions">
+                <button class="btn-cancel" id="closeDetail">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 消息提示 -->
+    <div class="toast hidden" id="toast"></div>
+
+    <script src="/static/js/history.js"></script>
+</body>
+</html>

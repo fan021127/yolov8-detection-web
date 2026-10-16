@@ -1,0 +1,11 @@
+Flask>=3.0               # Web框架
+Flask-Cors>=4.0
+ultralytics>=8.1         # YOLOv8模型库
+opencv-python>=4.8       # 图像处理
+numpy>=1.26
+pymysql>=1.1             # MySQL数据库驱动
+cryptography>=41.0
+Werkzeug>=3.0
+openpyxl>=3.1            # Excel导出
+Pillow>=10.0             # 图片处理
+python-dotenv>=1.0
